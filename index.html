@@ -27,7 +27,7 @@
             
             var xhr = new XMLHttpRequest;
             
-            xhr.open('GET', `https://api.edamam.com/search?q=${result}&app_id={id}&app_key={key}`, true);
+            xhr.open('GET', `https://api.edamam.com/search?q=${result}&app_id=${id}&app_key=${key}`, true);
 
             xhr.onload = function(){
                     if(this.status == 200){
