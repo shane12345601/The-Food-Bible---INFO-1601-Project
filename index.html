@@ -18,7 +18,8 @@
     <div id="testData"></div>
 
     <script>
-
+        const id = 3cabedb3;
+        const key = 110a048e7789e8f3d8e679f59273481b;
         document.getElementById('but1').addEventListener('click', getUserInput);
 
         function getUserInput(){
@@ -26,7 +27,7 @@
             
             var xhr = new XMLHttpRequest;
             
-            xhr.open('GET', `https://api.edamam.com/search?q=${result}&app_id=3cabedb3&app_key=110a048e7789e8f3d8e679f59273481b`, true);
+            xhr.open('GET', `https://api.edamam.com/search?q=${result}&app_id={id}&app_key={key}`, true);
 
             xhr.onload = function(){
                     if(this.status == 200){
