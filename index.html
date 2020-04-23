@@ -1,21 +1,61 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <title>Temp Name</title>
-    <script type="text/javascript" src="myscripts.js"></script>
-  </head>
-  
-  <body>
-    <p>This is a test</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe website</title>
+</head>
+<body>
+    
+    <form>
+
+        <input type="text" id="userInput">
+
+    </form>
+    
+    <button id="but1">Click to search</button>
     <hr>
-    <p>This course is ass</p>
-    <hr>
-    Click this cheesecake: 
-    <p><a href="https://youtu.be/dQw4w9WgXcQ"><img src="cheesecake.jpg"></a></p>
-    <hr>
-    <input type="button" value="self destruct" onclick="popup()"/>
-  </body>
- 
+    <div id="testData"></div>
+
+    <script>
+
+        document.getElementById('but1').addEventListener('click', getUserInput);
+
+        function getUserInput(){
+            var result = document.getElementById('userInput').value;
+            
+            var xhr = new XMLHttpRequest;
+            
+            xhr.open('GET', `https://api.edamam.com/search?q=${result}&app_id=3cabedb3&app_key=110a048e7789e8f3d8e679f59273481b`, true);
+
+            xhr.onload = function(){
+                    if(this.status == 200){
+                        console.log(this.responseText);
+                        var data = JSON.parse(this.responseText);
+
+                        var output = ``;
+                        for(var i in data.hits){
+                        output += 
+                            `<div class="results">` + 
+                            `<ul>` + 
+                            `<li>${data.hits[i].recipe.label}`+ `<ul>` + 
+                            `<li>` + `${data.hits[i].recipe.ingredientLines}` +
+                            `</li`  +
+                            `</u>`+
+                            `</li>` + 
+                            `</ul>` + 
+                            `</div>`
+                        }
+
+                        document.getElementById('testData').innerHTML = output;
+                    }
+                }
+
+                xhr.send();
+        }
+        
+    </script>
+</body>
 </html>
 
 <!-- 
