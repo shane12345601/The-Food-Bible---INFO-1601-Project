@@ -47,7 +47,7 @@
                         for(var i in data.hits){
                             var guide = ``;
                             for(j in data.hits[i].recipe.ingredients){
-                                guide += "<br>" + `${data.hits[i].recipe.ingredients[j].text}`;
+                                guide += "<br> " + '&#9656 ' + `${data.hits[i].recipe.ingredients[j].text}`;
                                     
                             }
                             output += 
