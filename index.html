@@ -7,6 +7,8 @@
     <style>
         .results{
             display: flex;
+            margin-bottom: 10px;
+            background-color: lightgray;
         }
         .results ul ul{
             list-style: none;
@@ -52,11 +54,14 @@
                             }
                             output += 
                                 `<div class="results">` + 
-                                `<img src="${data.hits[i].recipe.image}" width="100" height ="100">` +
+                                `<img src="${data.hits[i].recipe.image}" width="auto" height ="auto">` +
                                 `<ul>` + 
                                 `<li>` + 
                                 `${data.hits[i].recipe.label}` +
+                                `<details>` + 
+                                `<summary>` + 'Show recipe' + `</summary>` +
                                 `<ul>` + `<li>` + guide +`</li>` + `</ul>` +
+                                `</details>` +
                                  `</li>` + 
                                  `</ul>` + 
                                  "<br>" +
