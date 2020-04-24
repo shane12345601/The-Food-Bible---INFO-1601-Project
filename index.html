@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe website</title>
     <style>
+        html{
+            background-image: url(bg2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
         .results{
             display: flex;
             margin-bottom: 10px;
-            background-color: lightgray;
+            opacity: 0.85;
+            background-color: beige;
         }
         .results ul ul{
             list-style: none;
@@ -60,7 +67,7 @@
                                 `${data.hits[i].recipe.label}` +
                                 `<details>` + 
                                 `<summary>` + 'Show recipe' + `</summary>` +
-                                `<ul>` + `<li>` + guide +`</li>` + `</ul>` +
+                                `<ul>` + `<li>` + guide + `<br>` + `<br>` + `<a href="${data.hits[i].recipe.url}" target="_blank">` + `Further Instructions` + `</a>` + `</li>` + `</ul>` +
                                 `</details>` +
                                  `</li>` + 
                                  `</ul>` + 
