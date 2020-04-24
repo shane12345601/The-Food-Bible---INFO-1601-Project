@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe website</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .results{
+            display: flex;
+        }
+        .results ul ul{
+            list-style: none;
+        }
+    </style>
 </head>
 <body>
     
@@ -28,7 +35,7 @@
             
             var xhr = new XMLHttpRequest;
             
-            xhr.open('GET', `https://api.edamam.com/search?q=${result}&app_id=3cabedb3&app_key=110a048e7789e8f3d8e679f59273481b`, true);
+            xhr.open('GET', `https://api.edamam.com/search?q=${result}&app_id=e732e266&app_key=09c1cbb12dc2282cbcbacce78a46681f`, true);
 
             xhr.onload = function(){
                     if(this.status == 200){
@@ -36,18 +43,24 @@
                         var data = JSON.parse(this.responseText);
 
                         var output = ``;
+                        
                         for(var i in data.hits){
-                        output += 
-                            `<div class="results">` + 
-                            `<img src="${data.hits[i].recipe.image}" width="100" height ="100">` +
-                            `<ul>` + 
-                            `<li>${data.hits[i].recipe.label}`+ `<ul>` + 
-                            `<li>` + `${data.hits[i].recipe.ingredientLines}` +
-                            `</li`  +
-                            `</ul>`+
-                            `</li>` + 
-                            `</ul>` + 
-                            `</div>`
+                            var guide = ``;
+                            for(j in data.hits[i].recipe.ingredients){
+                                guide += "<br>" + `${data.hits[i].recipe.ingredients[j].text}`;
+                                    
+                            }
+                            output += 
+                                `<div class="results">` + 
+                                `<img src="${data.hits[i].recipe.image}" width="100" height ="100">` +
+                                `<ul>` + 
+                                `<li>` + 
+                                `${data.hits[i].recipe.label}` +
+                                `<ul>` + `<li>` + guide +`</li>` + `</ul>` +
+                                 `</li>` + 
+                                 `</ul>` + 
+                                 "<br>" +
+                                `</div>`;
                         }
 
                         document.getElementById('testData').innerHTML = output;
