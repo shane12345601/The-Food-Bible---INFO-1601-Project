@@ -4,34 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe website</title>
-    <style>
-        html{
-            background-image: url(bg2.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-        .results{
-            display: flex;
-            margin-bottom: 10px;
-            opacity: 0.85;
-            background-color: beige;
-        }
-        .results ul ul{
-            list-style: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
-    <form>
+    <div id="top-bar">
 
-        <input type="text" id="userInput" placeholder="Type here">
+        <img id="logo" src="logo.png" alt="The Food Bible">
 
-    </form>
+    </div>
+
     
-    <button id="but1">Click to search</button>
-    <hr>
+
+    <div id="search-box">
+        <form>
+
+            <input type="text" id="userInput" placeholder="Type here">
+
+        </form>
+       
+        <button id="but1">Click to search</button>
+        
+    </div>
+
+    
+    
+
     <div id="testData"></div>
 
     <script>
