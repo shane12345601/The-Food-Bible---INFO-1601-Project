@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="icon/jpg" href="e2b792f0-eb9f-4a0d-b412-71a81c524ae2.jpg"/>
+    <title>The Food Bible</title>
+    <meta name="description" content=" Recipe Search Engine."/>
+    <style>
+        html{
+            background-image: url(bg2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .results{
+            display: flex;
+            margin-bottom: 10px;
+            opacity: 0.85;
+            background-color: beige;
+        }
+        .results ul ul{
+            list-style: none;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-wrapper green">
+            <a href="#" class="brand-logo right">The Food Bible</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li>
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </li>
+                <li><a id="but1" class="waves-effect waves-light btn blue-grey">Search</a></li></li>
+            </ul>
+        </div>
+
+    </nav>
+    <div id="testData"></div>
+
+
+    <script>
+        document.getElementById('but1').addEventListener('click', getUserInput);
+        function getUserInput(){
+            var result = document.getElementById('search').value;
+            
+            var xhr = new XMLHttpRequest;
+            
+            xhr.open('GET', `https://api.edamam.com/search?q=${result}&app_id=b32e02ed&app_key=c6dd5057b99ba1fd25646ca3b9bdbe73`, true);
+            xhr.onload = function(){
+                    if(this.status == 200){
+                        console.log(this.responseText);
+                        var data = JSON.parse(this.responseText);
+                        var output = ``;
+                        
+                        for(var i in data.hits){
+                            var guide = ``;
+                            for(j in data.hits[i].recipe.ingredients){
+                                guide += "<br> " + '&#9656 ' + `${data.hits[i].recipe.ingredients[j].text}`;
+                                    
+                            }
+                            output += 
+                                `<div class="results">` + 
+                                `<img src="${data.hits[i].recipe.image}" width="auto" height ="auto">` +
+                                `<ul>` + 
+                                `<li>` + 
+                                `${data.hits[i].recipe.label}` +
+                                `<details>` + 
+                                `<summary>` + 'Show recipe' + `</summary>` +
+                                `<ul>` + `<li>` + guide + `<br>` + `<br>` + `<a href="${data.hits[i].recipe.url}" target="_blank">` + `Further Instructions` + `</a>` + `</li>` + `</ul>` +
+                                `</details>` +
+                                 `</li>` + 
+                                 `</ul>` + 
+                                 "<br>" +
+                                `</div>`;
+                        }
+                        document.getElementById('testData').innerHTML = output;
+                    }
+                }
+                xhr.send();
+        }
+        
+    </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
+<!-- 
+    http://rustytest-com.stackstaging.com/ 
+-->
