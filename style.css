@@ -1,3 +1,37 @@
+
+html{
+    background-image: url(bg2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#logo{
+    
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+#search-box{
+    position: relative;
+    top: 20px;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
 .results{
-            display: flex;
-        }
+    position: relative;
+    top: 50px;
+    display: flex;
+    margin-bottom: 10px;
+    opacity: 0.85;
+    background-color: beige;
+}
+
+.results ul ul{
+    list-style: none;
+}
