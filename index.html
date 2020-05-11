@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="icon/jpg" href="e2b792f0-eb9f-4a0d-b412-71a81c524ae2.jpg"/>
+    <title>The Food Bible</title>
+    <meta name="description" content=" Recipe Search Engine."/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <nav class="nav-extended" onload="">
+        <div class="nav-wrapper green">
+            <a href="#" class="brand-logo" class="animate_animated animate_bounce">The Food Bible</a>
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+            <ul class="sidenav" id="mobile-menu">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </div>
+        <div class="nav-content green">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a class="waves-effect waves-light btn green modal-trigger" href="#modal1">Find a Recipe</a></li>
+                <li class="tab"><a class="waves-effect waves-light btn green modal-trigger" href="#modal2">Health Filters</a></li>
+                <li class="tab"><a class="waves-effect waves-light btn green modal-trigger" href="#modal3">Add Exclusion</a></li>
+                <li class="tab"><a class="waves-effect waves-light btn green modal-trigger" href="#modal4">Subscribe</a></li>
+            </ul>
+        </div>
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <form>
+                    <div class="input-field">
+                        <input type="text" id="search">
+                        <label class="active" for="search"> Enter Recipe Keywords</label>
+                    </div>
+                </form>
+            </div>
+            <div  id="edamam-badge" data-color="white"></div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="but1">Search</a>    
+            </div>
+
+        </div>
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                <h4 style="color:black">Health and Allergy Options</h4>
+                        <p>
+                          <label>
+                            <input type="checkbox" id="veganStat" onclick="setStatus()"/>
+                            <span>Vegan</span>
+                          </label>
+                        </p>
+                        <p>
+                            <label>
+                              <input type="checkbox" id="vegStat" onclick="setStatus()" />
+                              <span>Vegetarian</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                              <input type="checkbox" id="sugStat" onclick="setStatus()" />
+                              <span>Sugar Conscious</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                              <input type="checkbox" id="peanStat" onclick="setStatus()"/>
+                              <span>Peanut Free</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                              <input type="checkbox" id="treeStat" onclick="setStatus()"/>
+                              <span>Tree-nut Free</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                              <input type="checkbox" id="alcoStat" onclick="setStatus()"/>
+                              <span>Alcohol Free</span>
+                            </label>
+                        </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Apply Filters</a>    
+            </div>
+        </div>
+        <div id="modal3" class="modal">
+            <div class="modal-content">
+                    <h4 style="color:black">Exclude Ingredients</h4>
+                    <form id="exclusionsForm">
+                        <div class="input-field">
+                            <input type="text" id="exclusion">
+                            <label class="active" for="exclusion">Add an Ingredient you want to Exclude</label>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="container" id="chips">
+
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <a class=" waves-effect waves-green btn-flat" onclick="addToExclusions()">Add Ingredient</a>
+                <a class=" waves-effect waves-green btn-flat" onclick="clearExclusions()">Clear Exclusions</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>    
+            </div>
+        </div>
+
+        <div id="modal4" class="modal">
+            <div class="modal-content">
+                <form>
+                    <div class="input-field">
+                        <input type="email" id="email1">
+                        <label class="active" for="search">Email</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="mail">Join Mailing List</a>    
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+    <div>
+
+    </div>
+    <div id="testData"></div>
+    </div>
+</main>
+<footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">INFO 1601 PROJECT</h5>
+          <p class="grey-text text-lighten-4">This is a simple web tool which searches for recipes using multiple filters.<br>
+            
+        </p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Instructions</h5>
+            <ul>
+                <li>1.Select from our health requirement filters</li>
+                <li>2.Exclude any ingredient manually by clicking add exclusion</li>
+                <li>3.Click Find a Recipe and Search</li>
+                <li>4.Even Subscribe to our Weekly Newsletter</li>
+                <li>5.Feel Free to click Find a Recipe and search without any filters</li>
+            <ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2014 Copyright UWI Saint Augustine
+      </div>
+    </div>
+  </footer>
+
+
+
+    <script>
+        var mailList = [];
+        var exclusions = [];
+        var healthFrag = "";
+        var excFrag = "";
+        var maxTime = 0;
+        var maxCalories = 0;
+        var vegan = false; 
+        var vege = false; 
+        var sugCons = false; 
+        var peanFree = false; 
+        var treeFree = false; 
+        var alcoFree = false;  
+
+
+
+        document.getElementById('but1').addEventListener('click', getUserInput);
+        document.getElementById('mail').addEventListener('click', addToMailList);
+
+        function setStatus(){
+            if(document.getElementById('veganStat').checked){
+                vegan = true;
+            }
+            else{
+                vegan = false;
+            }
+            console.log(vegan);
+
+            if(document.getElementById('vegStat').checked){
+                vege = true;
+            }
+            else{
+                vege = false;
+            }
+            console.log(vege);
+
+            if(document.getElementById('sugStat').checked){
+                sugCons = true;
+            }
+            else{
+                sugCons = false;
+            }
+            console.log(sugCons);
+
+            if(document.getElementById('peanStat').checked){
+                peanFree = true;
+            }
+            else{
+                peanFree = false;
+            }
+            console.log(peanFree);
+
+            if(document.getElementById('treeStat').checked){
+                treeFree = true;
+            }
+            else{
+                treeFree = false;
+            }
+            console.log(treeFree);
+
+            if(document.getElementById('alcoStat').checked){
+                alcoFree = true;
+            }
+            else{
+                alcoFree = false;
+            }
+            console.log(alcoFree); 
+        }
+
+        
+
+        function addToExclusions(){
+            var tell = true
+            var newExclusion = document.getElementById('exclusion').value;
+            for(var i = 0; i< exclusions.length; i++){
+                if(exclusions[i] === newExclusion){
+                    tell = false;
+                }
+            }
+            if(tell === true){
+            exclusions.push(newExclusion);
+            }
+            var output2 = ``;
+            for(var i = 0; i < exclusions.length; i++){
+                if(exclusions[i] !== null){
+                output2 += `<div class="chip">`+exclusions[i]+`</div>`;
+                console.log(exclusions[i]);
+                }
+            }
+
+            document.getElementById('chips').innerHTML = output2;
+        }
+
+        function clearExclusions(){
+            exclusions = [];
+            output2=``;
+            document.getElementById('chips').innerHTML = output2;
+        }
+
+        function addToMailList(){
+           
+            var user_email = document.getElementById('email1').value;
+            mailList += user_email;
+            M.toast({html: 'Welcome to the Mailing List'})
+        }
+
+        function excURLfragment(){
+            excFrag = "";
+            if(exclusions.length !== 0){
+                for(var member in exclusions){
+                    excFrag = excFrag.concat("&exclude=");
+                    excFrag = excFrag.concat(exclusions[member]);
+                }
+            }
+        }
+
+        
+
+        function healthURLFragment(){
+            healthFrag = "";
+            if(vegan === true){
+                healthFrag = healthFrag.concat("&health=vegan")
+            }
+            if(vege === true){
+                healthFrag = healthFrag.concat("&health=vegetarian");
+            }
+            if(sugCons === true){
+                healthFrag = healthFrag.concat("&health=sugar-conscious");
+            }
+            if(peanFree === true){
+                healthFrag = healthFrag.concat("&health=peanut-free");
+            }
+            if(treeFree === true){
+                healthFrag = healthFrag.concat("&health=tree-nut-free");
+            }
+            if(alcoFree === true){
+                healthFrag = healthFrag.concat("&health=alcohol-free");
+            }
+        }
+
+        function getUserInput(){
+            var result = document.getElementById('search').value;
+            excURLfragment();
+            healthURLFragment();
+
+            var xhr = new XMLHttpRequest;
+            
+            xhr.open('GET', `https://api.edamam.com/search?q=${result}${excFrag}${healthFrag}&to=15&app_id=b32e02ed&app_key=c6dd5057b99ba1fd25646ca3b9bdbe73`, true);
+            xhr.onload = function(){
+                    if(this.status == 200){
+                        console.log(this.responseText);
+                        var data = JSON.parse(this.responseText);
+                        var output = ``;
+                        
+                        for(var i in data.hits){
+                            var guide = ``;
+                            for(j in data.hits[i].recipe.ingredients){
+                                guide += "<br> " + '&#9656 ' + `${data.hits[i].recipe.ingredients[j].text}`;
+                                    
+                            }
+                            output += `<div class="card">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                            <img class="activator" src="${data.hits[i].recipe.image}" style="max-height:575px;">
+                                        </div>
+                                        <div class="card-content">
+                                            <span class="card-title activator grey-text text-darken-4">${data.hits[i].recipe.label}<i class="material-icons right">more_vert</i></span>
+                                            <p></p>
+                                        </div>
+                                    <div class="card-reveal">
+                                        <span class="card-title grey-text text-darken-4">${data.hits[i].recipe.label}<i class="material-icons right">close</i></span>
+                                         <p>${guide}</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="${data.hits[i].recipe.url}" target="_blank">Further Instructions</a>
+                                    </div>
+                                    </div>`
+                               
+                        }
+                        document.getElementById('testData').innerHTML = output;
+                    }
+                }
+                xhr.send();
+        }
+
+    
+
+        
+    </script>
+    <script src="https://developer.edamam.com/attribution/badge.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+        $('form').keypress(function(e){
+            return e.keyCode!=13;
+        });
+        $(document).ready(function(){
+          // Init Modal
+          $('.modal').modal();
+          // Init sidenav
+          $('.sidenav').sidenav();
+
+        });
+    </script>
+</body>
+</html>
+<!-- 
+    http://rustytest-com.stackstaging.com/ 
+-->
+
