@@ -322,7 +322,7 @@
                     if(this.status == 200){
                         console.log(this.responseText);
                         var data = JSON.parse(this.responseText);
-                        var output = ``;
+                        var output = `<div style="container">`;
                         if(data.hits.length === 0){
                             output += ` <div class="row">
                                          <div class="col s12 m5">
@@ -342,7 +342,9 @@
                                 guide += "<br> " + '&#9656 ' + `${data.hits[i].recipe.ingredients[j].text}`;
                                     
                             }
-                            output += `<div class="card">
+                            output += ` <div class="row">
+                                        <div class="col s12 m6 l6 offset-m2 offset-l2">
+                                        <div class="card">
                                         <div class="card-image waves-effect waves-block waves-light">
                                             <img class="activator" src="${data.hits[i].recipe.image}" style="max-height:575px;">
                                         </div>
@@ -357,9 +359,12 @@
                                     <div class="card-action">
                                         <a href="${data.hits[i].recipe.url}" target="_blank">Further Instructions</a>
                                     </div>
+                                    </div>
+                                    </div>
                                     </div>`
                                
                         }
+                        output+= `</div>`;    
                         document.getElementById('testData').innerHTML = output;
                         }
                     }
